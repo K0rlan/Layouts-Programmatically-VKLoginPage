@@ -34,7 +34,7 @@ class PrimaryView: UIView {
     
     public func setParamaters(imageName: String, title: String){
         self.titleLabel.text = title
-        guard let image = UIImage(named: "apple") else { return }
+        guard let image = UIImage(named: imageName) else { return }
         self.leftImageView.image = image
     }
 
@@ -60,5 +60,11 @@ class PrimaryView: UIView {
         self.layer.cornerRadius = 8
         self.layer.borderWidth = 1
         self.layer.borderColor = CGColor(red: 220/255, green: 220/255, blue: 222/255, alpha: 1)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(enterByAppleViewPressed))
+        self.addGestureRecognizer(gesture)
+    }
+    
+    @objc private func enterByAppleViewPressed(sender: UITapGestureRecognizer){
+        print(#function)
     }
 }

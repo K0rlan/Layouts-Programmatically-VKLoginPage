@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    //Mark: - UI Elements -
     lazy var closeButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "close"), for: .normal)
@@ -23,7 +24,7 @@ class ViewController: UIViewController {
         return imageView
         
     }()
- 
+    
     lazy var loginTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Email или телефон"
@@ -56,7 +57,7 @@ class ViewController: UIViewController {
         separatorView.addSubview(btnPassword)
         textField.rightViewMode = .always
         textField.rightView = separatorView
-
+        
         return textField
     }()
     
@@ -72,13 +73,21 @@ class ViewController: UIViewController {
     
     lazy var enterByAppleView: PrimaryView = {
         let view = PrimaryView()
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(enterByAppleViewPressed))
-        self.view.addGestureRecognizer(gesture)
         return view
     }()
     
-    var separatorFirstView = UIView()
-    var separatorSecondView = UIView()
+    //Mark: - Separator Views -
+    
+    lazy var separatorFirstView: SeparatorViews = {
+        let view = SeparatorViews()
+        return view
+    }()
+    
+    lazy var separatorSecondView: SeparatorViews = {
+        let view = SeparatorViews()
+        return view
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,24 +101,24 @@ class ViewController: UIViewController {
             self.view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-    
+        
         closeButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
         closeButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
         closeButton.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
         closeButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
         
         separatorFirstView.topAnchor.constraint(equalTo: closeButton.bottomAnchor).isActive = true
-        separatorFirstView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.12).isActive = true
+        separatorFirstView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.15).isActive = true
         
-        logoImageView.widthAnchor.constraint(equalToConstant: 75).isActive = true
-        logoImageView.heightAnchor.constraint(equalToConstant: 75).isActive = true
+        logoImageView.widthAnchor.constraint(equalToConstant: 85).isActive = true
+        logoImageView.heightAnchor.constraint(equalToConstant: 85).isActive = true
         logoImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         logoImageView.topAnchor.constraint(equalTo: separatorFirstView.bottomAnchor).isActive = true
         
         separatorSecondView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor).isActive = true
-        separatorSecondView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.001).isActive = true
+        separatorSecondView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.12).isActive = true
         
-        loginTextField.topAnchor.constraint(equalTo: separatorSecondView.bottomAnchor, constant: 90).isActive = true
+        loginTextField.topAnchor.constraint(equalTo: separatorSecondView.bottomAnchor).isActive = true
         loginTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 25).isActive = true
         loginTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -25).isActive = true
         loginTextField.heightAnchor.constraint(equalToConstant: 44).isActive = true
@@ -118,15 +127,15 @@ class ViewController: UIViewController {
         passwordTextField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 25).isActive = true
         passwordTextField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -25).isActive = true
         passwordTextField.heightAnchor.constraint(equalToConstant: 44).isActive = true
-                
+        
         enterButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 25).isActive = true
         enterButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -25).isActive = true
         enterButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
         enterButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 25).isActive
-         = true
-       
+            = true
+        
         enterByAppleView.setParamaters(imageName: "apple", title: "Войти через Apple")
-        enterByAppleView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20).isActive = true
+        enterByAppleView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -25).isActive = true
         enterByAppleView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
         enterByAppleView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true
         enterByAppleView.heightAnchor.constraint(equalToConstant: 44).isActive = true
@@ -134,21 +143,19 @@ class ViewController: UIViewController {
     }
     
     //Mark: - Actions -
+    
     @objc func enterButtonPressed(sender: UIButton){
         print(#function)
-//        print(sender)
     }
     
     @objc func passwordButtonPressed(sender: UIButton){
         print(#function)
-//        print(sender)
+        
+    }
     
-    }
-    @objc func enterByAppleViewPressed(sender: UITapGestureRecognizer){
-        print(#function)
-    }
     @objc func closeButtonPressed(sender: UIButton){
         print(#function)
+        exit(0)
     }
     
 }
